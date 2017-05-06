@@ -9,12 +9,18 @@ export function* checkAuth() {
   const accessToken = cookies.get('access_token')
 
   if (accessToken == null) {
-    lock.show()
+    const isAuthenticating = localStorage.getItem('is_authenticating')
+
+    if (isAuthenticating == null) {
+      localStorage.setItem('is_authenticating', true)
+      lock.show()
+    }
+
     const action = yield take(lockActionTypes.AUTHENTICATED)
     cookies.set('access_token', action.payload.accessToken, {
       maxAge: 86000, // 86400 minus 400 seconds of margin
     })
-    lock.hide()
+    localStorage.removeItem('is_authenticating')
   } else {
     yield put(lockActions.authenticated({ accessToken }))
   }
@@ -38,9 +44,17 @@ function* handleProfile() {
   yield put(actions.authProfileSuccess(profile))
 }
 
+function* handleLogout() {
+  cookies.set('access_token', null, { maxAge: -1 })
+  localStorage.removeItem('profile')
+
+  yield* checkAuth()
+}
+
 export default function* () {
   yield [
     takeLatest(actions.AUTH_LOGIN, handleLogin),
+    takeLatest(actions.AUTH_LOGOUT, handleLogout),
     takeLatest(actions.AUTH_PROFILE_REQUEST, handleProfile),
   ]
 }

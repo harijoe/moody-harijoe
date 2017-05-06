@@ -33,16 +33,15 @@ export const actionTypes = {
   UNRECOVERABLE_ERROR: '@@auth0/UNRECOVERABLE_ERROR',
   AUTHENTICATED: '@@auth0/AUTHENTICATED',
   AUTHORIZATION_ERROR: '@@auth0/AUTHORIZATION_ERROR',
+  RESET: '@@auth0/RESET',
 }
 
 export const actions = {
-  show: arg => ({
+  show: () => ({
     type: actionTypes.SHOW,
-    payload: arg,
   }),
-  hide: arg => ({
+  hide: () => ({
     type: actionTypes.HIDE,
-    payload: arg,
   }),
   unrecoverableError: arg => ({
     type: actionTypes.UNRECOVERABLE_ERROR,
@@ -51,6 +50,9 @@ export const actions = {
   authenticated: arg => ({
     type: actionTypes.AUTHENTICATED,
     payload: arg,
+  }),
+  reset: () => ({
+    type: actionTypes.RESET,
   }),
 }
 
@@ -65,6 +67,8 @@ export const reducer = (state = {}, action) => {
   switch (action.type) {
     case actionTypes.AUTHENTICATED:
       return action.payload
+    case actionTypes.RESET:
+      return {}
     case actionTypes.UNRECOVERABLE_ERROR:
       return {
         error: action.payload,

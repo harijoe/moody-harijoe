@@ -18,6 +18,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Switch>
         <Route path="/" component={HomePage} exact />
+        <Route path="/logout" component={HomePage} exact />
       </Switch>
     </ThemeProvider>
   )

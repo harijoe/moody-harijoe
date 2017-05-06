@@ -10,17 +10,25 @@ import configureStore from 'store/configure'
 import api from 'services/api'
 import { authLogin } from 'store/actions'
 import { listenAuthEvents } from 'services/lock'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import App from 'components/App'
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin()
 
 const history = createHistory({ basename: process.env.PUBLIC_PATH })
 const store = configureStore({}, history, { api: api.create() })
 
 const renderApp = () => (
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
+    <MuiThemeProvider>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </MuiThemeProvider>
   </Provider>
 )
 

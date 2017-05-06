@@ -4,7 +4,6 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-
   switch (action.type) {
     case AUTH_PROFILE_SUCCESS:
       return action.payload

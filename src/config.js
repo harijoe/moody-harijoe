@@ -38,7 +38,7 @@ const serviceConfigs = {
       },
       closable: false,
     },
-  }
+  },
 }
 
 // Necessary to have access to process.env variables at runtime (such as isDev)

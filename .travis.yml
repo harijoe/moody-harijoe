@@ -2,8 +2,10 @@ language: node_js
 node_js:
   - v6
 script:
-  - npm run lint && npm test -- --coverage
+  - yarn run lint && yarn test -- --coverage
 cache:
   - yarn
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+before_deploy:
+  - yarn run build
+deploy:
+  - firebase deploy --token=${FIREBASE_API_TOKEN}

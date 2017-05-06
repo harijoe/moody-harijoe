@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Webpack
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const OfflinePlugin = require('offline-plugin');
+const OfflinePlugin = require('offline-plugin')
 const devServer = require('@webpack-blocks/dev-server2')
 const splitVendor = require('webpack-blocks-split-vendor')
 const happypack = require('webpack-blocks-happypack')

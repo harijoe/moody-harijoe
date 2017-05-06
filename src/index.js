@@ -12,7 +12,7 @@ import api from 'services/api'
 import { authLogin } from 'store/actions'
 import { startAuthentication } from 'services/lock'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import App from 'components/App'
 

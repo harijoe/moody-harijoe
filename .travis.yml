@@ -9,4 +9,6 @@ before_deploy:
   - yarn run build
 
 deploy:
-  - firebase deploy --token=${FIREBASE_API_TOKEN}
+  provider: firebase
+  token:
+    secure: ${FIREBASE_API_TOKEN}

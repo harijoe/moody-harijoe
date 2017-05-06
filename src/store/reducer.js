@@ -2,10 +2,12 @@
 import camelCase from 'lodash/camelCase'
 import { combineReducers } from 'redux'
 import { routerReducer as router } from 'react-router-redux'
+import { reducer as lock } from 'services/lock'
 import { reducer as form } from 'redux-form'
 
 const reducers = {
   router,
+  lock,
   form,
 }
 

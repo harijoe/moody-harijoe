@@ -6,6 +6,10 @@ const config = {
     isDev: process.env.NODE_ENV !== 'production',
     isBrowser: typeof window !== 'undefined',
     apiUrl: 'https://jsonplaceholder.typicode.com',
+    auth0: {
+      clientId: 'xKgnHyMTVuWZjGV4kULMkWg3GOfrUJk0',
+      domain: 'whereru.eu.auth0.com',
+    },
   },
   test: {},
   development: {},

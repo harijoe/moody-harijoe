@@ -1,49 +1,22 @@
 export const AUTH_LOGIN = 'AUTH_LOGIN'
-export const AUTH_LOGIN_REQUEST = 'AUTH_LOGIN_REQUEST'
-export const AUTH_LOGIN_SUCCESS = 'AUTH_LOGIN_SUCCESS'
-export const AUTH_LOGIN_FAILURE = 'AUTH_LOGIN_FAILURE'
-export const AUTH_LOGOUT_REQUEST = 'AUTH_LOGOUT_REQUEST'
-export const AUTH_LOGOUT_SUCCESS = 'AUTH_LOGOUT_SUCCESS'
+export const AUTH_PROFILE_REQUEST = 'AUTH_PROFILE_REQUEST'
+export const AUTH_PROFILE_SUCCESS = 'AUTH_PROFILE_SUCCESS'
+export const AUTH_PROFILE_FAILURE = 'AUTH_PROFILE_FAILURE'
 
-export const requestLogin = (credentials) => {
-  return {
-    type: AUTH_LOGIN_REQUEST,
-    isFetching: true,
-    isAuthenticated: false,
-    credentials,
-  }
-}
+export const authLogin = () => ({
+  type: AUTH_LOGIN,
+})
 
-export const receiveLogin = (user) => {
-  return {
-    type: AUTH_LOGIN_SUCCESS,
-    isFetching: false,
-    isAuthenticated: true,
-    id_token: user.id_token,
-  }
-}
+export const authProfileRequest = () => ({
+  type: AUTH_PROFILE_REQUEST,
+})
 
-export const loginError = (message) => {
-  return {
-    type: AUTH_LOGIN_FAILURE,
-    isFetching: false,
-    isAuthenticated: false,
-    message,
-  }
-}
+export const authProfileSuccess = payload => ({
+  type: AUTH_PROFILE_SUCCESS,
+  payload,
+})
 
-export const requestLogout = () => {
-  return {
-    type: AUTH_LOGOUT_REQUEST,
-    isFetching: true,
-    isAuthenticated: true,
-  }
-}
-
-export const receiveLogout = () => {
-  return {
-    type: AUTH_LOGOUT_SUCCESS,
-    isFetching: false,
-    isAuthenticated: false,
-  }
-}
+export const authProfileFailure = error => ({
+  type: AUTH_PROFILE_FAILURE,
+  error,
+})

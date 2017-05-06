@@ -7,9 +7,10 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 import configureStore from 'store/configure'
+import { lockConfig } from 'config'
 import api from 'services/api'
 import { authLogin } from 'store/actions'
-import { listenAuthEvents } from 'services/lock'
+import { startAuthentication } from 'services/lock'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -35,8 +36,7 @@ const renderApp = () => (
 const root = document.getElementById('app')
 render(renderApp(), root)
 
-listenAuthEvents(store.dispatch)
-store.dispatch(authLogin())
+startAuthentication(lockConfig, store.dispatch, authLogin)
 
 if (module.hot) {
   module.hot.accept('components/App', () => {

@@ -2,7 +2,7 @@
 import React from 'react'
 import { LogoutButtonContainer } from 'containers'
 
-const HomePage = () => {
+export default () => {
   return (
     <div>
       <strong>Hello World</strong>
@@ -10,5 +10,3 @@ const HomePage = () => {
     </div>
   )
 }
-
-export default HomePage

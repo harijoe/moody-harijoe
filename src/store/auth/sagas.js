@@ -1,26 +1,35 @@
 // https://github.com/diegohaz/arc/wiki/Sagas
 import { put, select, take, call } from 'redux-saga/effects'
 import { takeLatest } from 'utils/effects'
+import { push } from 'react-router-redux'
 import cookies from 'services/cookies'
-import lock, { actionTypes as lockActionTypes, actions as lockActions, selectors as lockSelectors, getUserInfo } from 'services/lock'
+import getLock, { actionTypes as lockActionTypes, actions as lockActions, selectors as lockSelectors, getUserInfo } from 'services/lock'
+import { fromRouter } from 'store/selectors'
 import * as actions from './actions'
 
 export function* checkAuth() {
+  const lock = getLock()
   const accessToken = cookies.get('access_token')
 
   if (accessToken == null) {
-    const isAuthenticating = localStorage.getItem('is_authenticating')
-
-    if (isAuthenticating == null) {
-      localStorage.setItem('is_authenticating', true)
-      lock.show()
+    // Show lock only if auth is not already happening
+    const hash = yield select(fromRouter.getHash)
+    if (hash.indexOf('access_token') === -1) {
+      const pathname = yield select(fromRouter.getPathname)
+      lock.show({
+        auth: {
+          params: {
+            state: pathname, // Save pathname as state for after login redirection
+          },
+        },
+      })
     }
 
     const action = yield take(lockActionTypes.AUTHENTICATED)
+    yield put(push(action.payload.state))
     cookies.set('access_token', action.payload.accessToken, {
       maxAge: 86000, // 86400 minus 400 seconds of margin
     })
-    localStorage.removeItem('is_authenticating')
   } else {
     yield put(lockActions.authenticated({ accessToken }))
   }

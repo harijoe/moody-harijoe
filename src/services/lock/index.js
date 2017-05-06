@@ -1,15 +1,6 @@
-import { auth0 } from 'config'
 import Auth0Lock from 'auth0-lock'
 
-const { clientId, domain } = auth0
-const lock = new Auth0Lock(clientId, domain, {
-  auth: {
-    params: {
-      scope: 'profile', // Learn about scopes: https://auth0.com/docs/scopes
-    },
-  },
-  closable: false,
-})
+let lock
 
 export const getUserInfo = accessToken => {
   const promise = new Promise((resolve, reject) => {
@@ -25,7 +16,7 @@ export const getUserInfo = accessToken => {
   return promise
 }
 
-export default lock
+export default () => lock
 
 export const actionTypes = {
   SHOW: '@@auth0/SHOW',
@@ -56,11 +47,14 @@ export const actions = {
   }),
 }
 
-export const listenAuthEvents = dispatch => {
+export const startAuthentication = (globalConfig, dispatch, callbackAction) => {
+  const { clientId, domain, config } = globalConfig
+  lock = new Auth0Lock(clientId, domain, config)
   lock.on('show', arg => dispatch(actions.show(arg)))
   lock.on('hide', arg => dispatch(actions.hide(arg)))
   lock.on('unrecoverable_error', arg => dispatch(actions.unrecoverableError(arg)))
   lock.on('authenticated', arg => dispatch(actions.authenticated(arg)))
+  dispatch(callbackAction())
 }
 
 export const reducer = (state = {}, action) => {

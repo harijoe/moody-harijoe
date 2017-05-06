@@ -19,7 +19,8 @@
     "build:copy": "copyfiles -u 1 public/* public/**/* dist",
     "prebuild": "npm run build:clean && npm run build:copy",
     "build": "npm run env:prod -- webpack --progress",
-    "build:example": "npm run env:example -- npm run build"
+    "build:example": "npm run env:example -- npm run build",
+    "deploy": "npm run build && firebase deploy"
   },
   "jest": {
     "moduleDirectories": [
@@ -90,7 +91,7 @@
     "react-modal": "^1.6.5",
     "react-redux": "^5.0.1",
     "react-router-dom": "^4.1.1",
-    "react-router-redux": "5.0.0-alpha.6",
+    "react-router-redux": "next",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
     "redux-form": "^6.4.3",

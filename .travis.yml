@@ -7,7 +7,7 @@ cache:
   - yarn
 before_deploy:
   - yarn run build
-  - cd functions && yarn
+  - cd functions && yarn && cd ..
 
 deploy:
   provider: firebase

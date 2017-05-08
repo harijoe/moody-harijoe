@@ -20,6 +20,9 @@ provider:
 plugins:
   - serverless-webpack
 
+custom:
+  webpackIncludeModules: true # enable auto-packing of external modules
+
 functions:
   create:
     handler: handler.create

@@ -22,7 +22,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['latest'],
+          presets: ['es2015'],
         },
       },
     ],

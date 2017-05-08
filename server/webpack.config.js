@@ -2,7 +2,7 @@ require('webpack')
 
 module.exports = {
   context: __dirname,
-  entry: './index',
+  entry: './handler.js',
   output: {
     path: `${__dirname}/dist`,
     filename: 'handler.js',

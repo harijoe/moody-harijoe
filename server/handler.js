@@ -12,11 +12,11 @@ export const create = (event, context) => {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(result),
-    };
+    }
 
-    context.succeed(response);
-  });
-};
+    context.succeed(response)
+  })
+}
 
 export const readAll = (event, context) => {
   todosReadAll(event, (error, result) => {
@@ -26,11 +26,11 @@ export const readAll = (event, context) => {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(result),
-    };
+    }
 
-    context.succeed(response);
-  });
-};
+    context.succeed(response)
+  })
+}
 
 export const readOne = (event, context) => {
   todosReadOne(event, (error, result) => {
@@ -40,11 +40,11 @@ export const readOne = (event, context) => {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(result),
-    };
+    }
 
-    context.succeed(response);
-  });
-};
+    context.succeed(response)
+  })
+}
 
 export const update = (event, context) => {
   todosUpdate(event, (error, result) => {
@@ -54,11 +54,11 @@ export const update = (event, context) => {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(result),
-    };
+    }
 
-    context.succeed(response);
-  });
-};
+    context.succeed(response)
+  })
+}
 
 export const doDelete = (event, context) => {
   todosDelete(event, (error, result) => {
@@ -68,8 +68,8 @@ export const doDelete = (event, context) => {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(result),
-    };
+    }
 
-    context.succeed(response);
-  });
-};
+    context.succeed(response)
+  })
+}

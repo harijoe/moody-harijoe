@@ -50,7 +50,7 @@ functions:
           method: put
           cors: true
   delete:
-    handler: handler.delete
+    handler: handler.doDelete
     events:
       - http:
           path: todos/{id}

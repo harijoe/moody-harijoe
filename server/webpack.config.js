@@ -1,17 +1,17 @@
-var webpack = require('webpack');
+require('webpack')
 
 module.exports = {
   context: __dirname,
   entry: './index',
   output: {
-    path: __dirname,
+    path: `${__dirname}/dist`,
     filename: 'handler.js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
   },
   target: 'node',
   externals: [require('webpack-node-externals')()],
   resolve: {
-    extensions: ['.js']
+    extensions: ['.js'],
   },
   plugins: [
   ],
@@ -22,9 +22,9 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['es2015']
-        }
-      }
-    ]
-  }
-};
+          presets: ['es2015'],
+        },
+      },
+    ],
+  },
+}
